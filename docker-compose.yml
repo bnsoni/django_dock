@@ -39,3 +39,5 @@ services:
 networks:
   djangonet:
     driver: bridge
+
+    
