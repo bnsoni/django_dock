@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--d!-8r$^ppioevn@bvi4_#k$r8+-^*9=api)*)s6f*9+s=2#pi
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '172.18.0.20', 'localhost']
 
 
 # Application definition
@@ -150,11 +150,11 @@ OAUTH2_PROVIDER = {
 #    )
 #}
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    )
-}
+#REST_FRAMEWORK = {
+ #   'DEFAULT_AUTHENTICATION_CLASSES': (
+  #      'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+   # ),
+    #'DEFAULT_PERMISSION_CLASSES': (
+     #   'rest_framework.permissions.IsAuthenticated',
+    #)
+#}

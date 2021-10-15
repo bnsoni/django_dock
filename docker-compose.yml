@@ -10,7 +10,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     networks:
-      - djangonet
+      - devstack_default
   web:
     build: .
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
@@ -18,12 +18,13 @@ services:
       - .:/code
     ports:
       - "8000:8000"
+    container_name: django_dock
     depends_on:
       - db
     links:
       - db:db
     networks:
-      - djangonet
+      - devstack_default
   pgadmin:
     container_name: pgadmin4
     image: dpage/pgadmin4
@@ -34,10 +35,10 @@ services:
     ports:
       - "5050:80"
     networks:
-      - djangonet
+      - devstack_default
 
 networks:
-  djangonet:
-    driver: bridge
+  devstack_default:
+    external: true
 
     
