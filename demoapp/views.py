@@ -19,7 +19,7 @@ class ListInterviewAPIView(ListAPIView):
     serializer_class = InterviewSerializer
 
 class CreateInterviewAPIView(CreateAPIView):
-    permission_classes = [permissions.IsAuthenticated]
+    #permission_classes = [permissions.IsAuthenticated]
     queryset = Interview.objects.all()
     serializer_class = InterviewSerializer
 
