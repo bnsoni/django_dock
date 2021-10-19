@@ -15,8 +15,11 @@ from django.http import HttpResponse
 
 # Create your views here.
 class ListInterviewAPIView(ListAPIView):
+    permission_classes = [TokenHasScope]
+    required_scopes = ['read']
     queryset = Interview.objects.all()
     serializer_class = InterviewSerializer
+    
 
 class CreateInterviewAPIView(CreateAPIView):
     #permission_classes = [permissions.IsAuthenticated]
@@ -24,9 +27,20 @@ class CreateInterviewAPIView(CreateAPIView):
     serializer_class = InterviewSerializer
 
 class UpdateInterviewAPIView(UpdateAPIView):
+    permission_classes = [TokenHasScope]
+    required_scopes = ['write']
     queryset = Interview.objects.all()
     serializer_class = InterviewSerializer
 
 class DeleteInterviewAPIView(DestroyAPIView):
     queryset = Interview.objects.all()
     serializer_class = InterviewSerializer
+
+
+class ApiEndpoint(ProtectedResourceView):
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('Hello, OAuth2!')
+
+
+def interview_view(request):
+    return render(request, "", {})

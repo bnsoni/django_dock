@@ -45,7 +45,14 @@ INSTALLED_APPS = [
 ]
 
 
+AUTHENTICATION_BACKENDS = [
+    'oauth2_provider.backends.OAuth2Backend',
+    # Uncomment following if you want to access the admin
+    #'django.contrib.auth.backends.ModelBackend',
+]
+
 MIDDLEWARE = [
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -146,13 +153,15 @@ OAUTH2_PROVIDER = {
     'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
 }
 
-#REST_FRAMEWORK = {
-    # ...
+REST_FRAMEWORK = { 
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication', 
+    ), 
 
-  #  'DEFAULT_PERMISSION_CLASSES': (
- #       'rest_framework.permissions.IsAuthenticated',
-#    )
-#}
+    #'DEFAULT_PERMISSION_CLASSES': (
+    #    'rest_framework.permissions.IsAuthenticated',
+    #)
+} 
 
 #REST_FRAMEWORK = {
  #   'DEFAULT_AUTHENTICATION_CLASSES': (
